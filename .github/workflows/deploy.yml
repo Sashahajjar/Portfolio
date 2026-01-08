@@ -43,18 +43,29 @@ jobs:
           echo "Build failed. Showing errors:"
           cat build.log || true
       
+      - name: Verify build output
+        run: |
+          echo "=== Build Output Verification ==="
+          echo "Checking if out directory exists:"
+          ls -la | grep out || echo "out directory not found!"
+          echo ""
+          echo "Contents of out directory:"
+          ls -la out/ || echo "Cannot list out directory"
+          echo ""
+          echo "Checking for index.html:"
+          ls -la out/index.html || echo "index.html not found!"
+          echo ""
+          echo "Checking directory size:"
+          du -sh out/ || echo "Cannot check size"
+          echo ""
+          echo "Full directory tree (first 50 lines):"
+          find out -type f | head -50 || echo "Cannot list files"
+      
       - name: Add .nojekyll file
         run: |
           mkdir -p out
           touch out/.nojekyll
-      
-      - name: Verify build output
-        run: |
-          echo "Build output structure:"
-          ls -la out/ | head -20
-          echo ""
-          echo "Checking for index.html:"
-          ls -la out/index.html || echo "index.html not found!"
+          echo ".nojekyll file created"
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
