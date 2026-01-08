@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://sachahajjar.vercel.app/sitemap.xml",
+    sitemap: "https://sashahajjar.github.io/Portfolio/sitemap.xml",
   };
 }
 
