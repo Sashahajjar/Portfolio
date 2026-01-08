@@ -9,15 +9,18 @@ import { useLanguage } from "../contexts/LanguageContext";
 export default function Hero() {
   const { t, language: lang } = useLanguage();
 
-  // Personal images array
+  // Get basePath from environment or use default
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (typeof window !== "undefined" && window.location.pathname.startsWith('/Portfolio') ? '/Portfolio' : '') || '';
+
+  // Personal images array with basePath
   const personalImages: string[] = [
-    "/photo7.jpg",
-    "/photo2.jpg",
-    "/photo3.jpg",
-    "/photo4.jpg",
-    "/photo5.jpg",
-    "/photo6.jpg",
-  ];
+    `${basePath}/photo7.jpg`,
+    `${basePath}/photo2.jpg`,
+    `${basePath}/photo3.jpg`,
+    `${basePath}/photo4.jpg`,
+    `${basePath}/photo5.jpg`,
+    `${basePath}/photo6.jpg`,
+  ].map(img => img.replace('//', '/'));
 
   const scrollToContact = () => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
@@ -98,7 +101,7 @@ export default function Hero() {
               {/* Profile Picture in Center */}
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl ring-4 ring-[var(--accent)]/20 dark:ring-[var(--accent)]/30 z-10 mx-2 md:mx-4">
               <Image
-                src="/profile.jpg"
+                src={`${basePath}/profile.jpg`.replace('//', '/')}
                 alt="Sacha Hajjar"
                 fill
                 className="object-cover"
