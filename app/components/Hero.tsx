@@ -199,18 +199,35 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1 }}
           className="flex justify-center items-center gap-4 flex-wrap"
         >
-          <motion.a
-            href={`${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/')}
-            download="HAJJAR-Sacha-CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={async (e) => {
+              if (typeof window !== "undefined") {
+                try {
+                  const cvPath = `${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/');
+                  const response = await fetch(cvPath);
+                  const blob = await response.blob();
+                  const url = window.URL.createObjectURL(blob);
+                  const link = document.createElement('a');
+                  link.href = url;
+                  link.download = 'HAJJAR-Sacha-CV.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  window.URL.revokeObjectURL(url);
+                } catch (error) {
+                  console.error('Error downloading CV:', error);
+                  // Fallback: open in new tab
+                  window.open(`${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/'), '_blank');
+                }
+              }
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-10 py-4 bg-white dark:bg-[var(--beige-dark)] text-[var(--accent)] border-2 border-[var(--accent)] rounded-lg font-semibold flex items-center space-x-2 shadow-xl hover:shadow-2xl transition-all text-lg"
+            className="px-10 py-4 bg-white dark:bg-[var(--beige-dark)] text-[var(--accent)] border-2 border-[var(--accent)] rounded-lg font-semibold flex items-center space-x-2 shadow-xl hover:shadow-2xl transition-all text-lg cursor-pointer"
           >
             <Download className="w-5 h-5" />
             <span>{t.hero.downloadCV}</span>
-          </motion.a>
+          </motion.button>
           <motion.button
             onClick={scrollToContact}
             whileHover={{ scale: 1.05 }}
