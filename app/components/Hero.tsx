@@ -201,7 +201,9 @@ export default function Hero() {
         >
           <motion.a
             href={`${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/')}
-            download
+            download="HAJJAR-Sacha-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-10 py-4 bg-white dark:bg-[var(--beige-dark)] text-[var(--accent)] border-2 border-[var(--accent)] rounded-lg font-semibold flex items-center space-x-2 shadow-xl hover:shadow-2xl transition-all text-lg"
