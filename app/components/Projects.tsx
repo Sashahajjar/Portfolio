@@ -50,10 +50,14 @@ export default function Projects() {
                   <div className="flex items-center justify-between mb-3">
                     <Code className="w-8 h-8 text-[var(--accent)] dark:text-[var(--accent-light)]" />
                     {projectUrl !== "#" && (
-                      <ExternalLink 
-                        className="w-5 h-5 text-[var(--accent)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer" 
-                        onClick={() => projectUrl !== "#" && window.open(projectUrl, '_blank', 'noopener,noreferrer')}
-                      />
+                    <ExternalLink 
+                      className="w-5 h-5 text-[var(--accent)] opacity-70 hover:opacity-100 transition-opacity cursor-pointer" 
+                      onClick={() => {
+                        if (typeof window !== "undefined" && projectUrl !== "#") {
+                          window.open(projectUrl, '_blank', 'noopener,noreferrer');
+                        }
+                      }}
+                    />
                     )}
                   </div>
                   <h3 className="text-xl font-bold font-poppins text-[var(--foreground)] mb-2">

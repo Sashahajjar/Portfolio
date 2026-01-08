@@ -24,6 +24,26 @@ export const translations = {
       title: "About",
       paragraph: "I'm Sacha Hajjar, a software engineer and an ISEP graduate (Institut Supérieur d'Électronique de Paris). Through a two-year apprenticeship at Société des Grands Projets, I worked on digital tools used to support decision-making and performance monitoring on Europe's largest infrastructure project, the Grand Paris Express. My work sits at the intersection of software engineering, data analysis, and business problem-solving.",
     },
+    services: {
+      title: "Skills & Expertise",
+      subtitle: "Technical capabilities and areas of expertise",
+      webDevelopment: {
+        title: "Full-Stack Development",
+        description: "Building modern web applications with scalable architectures and clean, maintainable code. Experience in frontend interfaces and backend systems, creating reliable end-to-end digital products.",
+      },
+      dataAnalytics: {
+        title: "Analytics & Business Intelligence",
+        description: "Transforming raw data into actionable insights. Experience designing analytics pipelines, dashboards, and BI tools that help organizations make data-driven decisions.",
+      },
+      aiSolutions: {
+        title: "AI-Powered Solutions",
+        description: "Building AI features that enhance user experience and streamline processes. Experience with LangChain, OpenAI API, and prompt engineering to create intelligent solutions.",
+      },
+      consulting: {
+        title: "Problem Solving & Collaboration",
+        description: "Strong analytical and collaborative skills. Experience working with cross-functional teams, understanding business needs, and delivering technical solutions that meet organizational goals.",
+      },
+    },
     skills: {
       title: "Tech Stack",
       languages: "Languages",

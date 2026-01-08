@@ -21,6 +21,8 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
@@ -43,10 +45,12 @@ export default function Navbar() {
   }, [language]);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      }
     }
   };
 

@@ -20,9 +20,11 @@ export default function Hero() {
   ];
 
   const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+      const element = document.querySelector("#contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -223,8 +225,10 @@ export default function Hero() {
         >
           <motion.button
             onClick={() => {
-              const element = document.querySelector("#about");
-              if (element) element.scrollIntoView({ behavior: "smooth" });
+              if (typeof window !== "undefined" && typeof document !== "undefined") {
+                const element = document.querySelector("#about");
+                if (element) element.scrollIntoView({ behavior: "smooth" });
+              }
             }}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
