@@ -32,8 +32,16 @@ jobs:
         run: npm ci
       
       - name: Build
-        run: npm run build
+        run: |
+          echo "Starting build..."
+          npm run build 2>&1 | tee build.log || (cat build.log && exit 1)
         continue-on-error: false
+      
+      - name: Show build errors
+        if: failure()
+        run: |
+          echo "Build failed. Showing errors:"
+          cat build.log || true
       
       - name: Add .nojekyll file
         run: |
