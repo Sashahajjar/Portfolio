@@ -23,17 +23,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const savedLanguage = localStorage.getItem("language") as Language | null;
       if (savedLanguage && (savedLanguage === "en" || savedLanguage === "fr")) {
         setLanguageState(savedLanguage);
-        document.documentElement.lang = savedLanguage;
+        if (typeof document !== "undefined") {
+          document.documentElement.lang = savedLanguage;
+        }
       } else {
-        document.documentElement.lang = "en";
+        if (typeof document !== "undefined") {
+          document.documentElement.lang = "en";
+        }
       }
-    } else {
-      document.documentElement.lang = "en";
     }
   }, []);
 
   useEffect(() => {
-    if (mounted) {
+    if (mounted && typeof document !== "undefined") {
       document.documentElement.lang = language;
     }
   }, [language, mounted]);
