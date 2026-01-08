@@ -6,7 +6,7 @@ export default function StructuredData() {
     jobTitle: "Ingénieure en numérique",
     description:
       "Ingénieure en numérique diplômée de l'ISEP, spécialisée en génie logiciel. Passionnée par le développement web et l'analyse de données.",
-    url: "https://sachahajjar.vercel.app",
+    url: "https://sashahajjar.github.io/Portfolio",
     email: "hajjarsacha@gmail.com",
     telephone: "+33 7 66 78 71 57",
     address: {
