@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   output: 'export',
   // Base path for GitHub Pages (repository name)
   basePath: '/Portfolio',
+  // Trailing slash for GitHub Pages compatibility
+  trailingSlash: true,
   images: {
     unoptimized: true, // Required for static export
   },
