@@ -18,11 +18,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Check localStorage for saved language preference
-    const savedLanguage = localStorage.getItem("language") as Language | null;
-    if (savedLanguage && (savedLanguage === "en" || savedLanguage === "fr")) {
-      setLanguageState(savedLanguage);
-      document.documentElement.lang = savedLanguage;
+    // Check localStorage for saved language preference (only in browser)
+    if (typeof window !== "undefined") {
+      const savedLanguage = localStorage.getItem("language") as Language | null;
+      if (savedLanguage && (savedLanguage === "en" || savedLanguage === "fr")) {
+        setLanguageState(savedLanguage);
+        document.documentElement.lang = savedLanguage;
+      } else {
+        document.documentElement.lang = "en";
+      }
     } else {
       document.documentElement.lang = "en";
     }
@@ -36,7 +40,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    if (mounted) {
+    if (mounted && typeof window !== "undefined") {
       localStorage.setItem("language", lang);
     }
   };
