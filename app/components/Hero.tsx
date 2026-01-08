@@ -200,7 +200,7 @@ export default function Hero() {
           className="flex justify-center items-center gap-4 flex-wrap"
         >
           <motion.a
-            href="/HAJJAR-Sacha-CV.pdf"
+            href={`${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/')}
             download
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
