@@ -9,15 +9,15 @@ import { useLanguage } from "../contexts/LanguageContext";
 export default function Hero() {
   const { t, language: lang } = useLanguage();
 
-  // Personal images array
-  const personalImages = [
+  // Personal images array - can be empty if images aren't available
+  const personalImages: string[] = [
     "/photo7.jpg",
     "/photo2.jpg",
     "/photo3.jpg",
     "/photo4.jpg",
     "/photo5.jpg",
     "/photo6.jpg",
-  ];
+  ].filter(Boolean); // Remove any empty values
 
   const scrollToContact = () => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
@@ -89,6 +89,13 @@ export default function Hero() {
                     style={isPhoto7 ? { objectPosition: 'center center' } : undefined}
                     sizes="(max-width: 768px) 80px, 112px"
                     unoptimized
+                    onError={(e) => {
+                      // Hide broken images
+                      const target = e.target as HTMLImageElement;
+                      if (target?.parentElement) {
+                        target.parentElement.style.display = 'none';
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                 </motion.div>
@@ -170,6 +177,13 @@ export default function Hero() {
                     style={objectPosition ? { objectPosition } : undefined}
                     sizes="(max-width: 768px) 80px, 112px"
                     unoptimized
+                    onError={(e) => {
+                      // Hide broken images
+                      const target = e.target as HTMLImageElement;
+                      if (target?.parentElement) {
+                        target.parentElement.style.display = 'none';
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                 </motion.div>
