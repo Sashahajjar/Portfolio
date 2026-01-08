@@ -68,6 +68,9 @@ export const translations = {
       title: "International Experience",
       exchange: "Exchange Program",
     },
+    activities: {
+      title: "Activities",
+    },
     footer: {
       contact: "Contact",
       social: "Social Networks",
