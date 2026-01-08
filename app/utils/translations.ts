@@ -203,7 +203,7 @@ export const translations = {
   },
 };
 
-import { experiences, education } from "./data";
+import { experiences, education, activities } from "./data";
 
 export const getTranslatedData = (lang: Language) => {
   const data = {
@@ -356,7 +356,7 @@ export const getTranslatedData = (lang: Language) => {
           }
           return edu;
         }),
-    activities: [],
+    activities: activities,
     techStack: {
       languages: lang === "en" 
         ? "JavaScript, TypeScript, Python, Java, PHP, SQL"

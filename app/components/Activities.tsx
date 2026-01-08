@@ -7,6 +7,11 @@ import { useLanguage } from "../contexts/LanguageContext";
 export default function Activities() {
   const { t, data } = useLanguage();
 
+  // Don't render if no activities
+  if (!data.activities || data.activities.length === 0) {
+    return null;
+  }
+
   return (
     <section
       id="activities"
