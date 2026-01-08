@@ -51,8 +51,8 @@ export default function Hero() {
           >
             {/* Horizontal Container */}
             <div className="flex items-center justify-center gap-3 md:gap-4 flex-wrap">
-              {/* Images on the left */}
-              {personalImages.slice(0, Math.ceil(personalImages.length / 2)).map((image, index) => {
+              {/* Images on the left - only show if images exist */}
+              {personalImages && personalImages.length > 0 && personalImages.slice(0, Math.ceil(personalImages.length / 2)).map((image, index) => {
                 const isPhoto7 = image === "/photo7.jpg";
                 return (
                 <motion.div
@@ -96,7 +96,7 @@ export default function Hero() {
               })}
 
               {/* Profile Picture in Center */}
-              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl ring-4 ring-[var(--accent)]/20 dark:ring-[var(--accent)]/30 z-10 mx-2 md:mx-4">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl ring-4 ring-[var(--accent)]/20 dark:ring-[var(--accent)]/30 z-10 mx-2 md:mx-4 bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent)]/10 flex items-center justify-center">
               <Image
                 src="/profile.jpg"
                 alt="Sacha Hajjar"
@@ -105,11 +105,25 @@ export default function Hero() {
                 style={{ objectPosition: 'center 20%' }}
                 priority
                 sizes="(max-width: 768px) 192px, 256px"
+                onError={(e) => {
+                  // Hide image on error, show initials instead
+                  const target = e.target as HTMLImageElement;
+                  if (target) {
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent && !parent.querySelector('.initials')) {
+                      const initials = document.createElement('div');
+                      initials.className = 'initials text-4xl md:text-6xl font-bold text-[var(--accent)]';
+                      initials.textContent = 'SH';
+                      parent.appendChild(initials);
+                    }
+                  }
+                }}
               />
               </div>
 
-              {/* Images on the right */}
-              {personalImages.slice(Math.ceil(personalImages.length / 2)).map((image, index) => {
+              {/* Images on the right - only show if images exist */}
+              {personalImages && personalImages.length > 0 && personalImages.slice(Math.ceil(personalImages.length / 2)).map((image, index) => {
                 const isPhoto7 = image === "/photo7.jpg";
                 const isLast = index === personalImages.slice(Math.ceil(personalImages.length / 2)).length - 1;
                 const isPhoto6 = image === "/photo6.jpg";
