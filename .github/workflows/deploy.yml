@@ -34,7 +34,25 @@ jobs:
       - name: Build
         run: |
           echo "Starting build..."
-          npm run build 2>&1 | tee build.log || (cat build.log && exit 1)
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Current directory: $(pwd)"
+          echo "Listing files before build:"
+          ls -la
+          echo ""
+          echo "Running build..."
+          npm run build 2>&1 | tee build.log
+          BUILD_EXIT_CODE=${PIPESTATUS[0]}
+          echo ""
+          echo "Build exit code: $BUILD_EXIT_CODE"
+          echo ""
+          echo "Build log (last 100 lines):"
+          tail -100 build.log
+          if [ $BUILD_EXIT_CODE -ne 0 ]; then
+            echo "Build failed with exit code $BUILD_EXIT_CODE"
+            cat build.log
+            exit $BUILD_EXIT_CODE
+          fi
         continue-on-error: false
       
       - name: Show build errors
