@@ -168,6 +168,9 @@ export const translations = {
       title: "Expérience Internationale",
       exchange: "Échange",
     },
+    activities: {
+      title: "Activités",
+    },
     footer: {
       contact: "Contact",
       social: "Réseaux sociaux",
