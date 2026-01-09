@@ -57,7 +57,7 @@ export default function Footer() {
             </h3>
             <div className="flex space-x-4">
               <a
-                href="https://www.linkedin.com/in/sasha-hajjar-026122230"
+                href="https://www.linkedin.com/in/sacha-hajjar-026122230/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-[var(--beige-dark)] dark:bg-[var(--beige)] hover:bg-[var(--accent)]/20 transition-colors"

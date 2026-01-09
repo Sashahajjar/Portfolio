@@ -202,7 +202,7 @@ export const languages = [
 
 export const contactInfo = {
   email: "hajjarsacha@gmail.com",
-  linkedin: "Sasha Hajjar",
+  linkedin: "Sacha Hajjar",
   phone: "+33 7 66 78 71 57",
   location: "Paris, France",
 };

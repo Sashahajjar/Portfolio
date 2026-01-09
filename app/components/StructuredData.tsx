@@ -29,7 +29,7 @@ export default function StructuredData() {
       "Python",
     ],
     sameAs: [
-      "https://www.linkedin.com/in/sasha-hajjar-026122230",
+      "https://www.linkedin.com/in/sacha-hajjar-026122230/",
       "https://github.com",
     ],
   };

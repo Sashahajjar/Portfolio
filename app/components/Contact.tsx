@@ -47,7 +47,7 @@ export default function Contact() {
                 <span>{contactInfo.phone}</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/sasha-hajjar-026122230"
+                href="https://www.linkedin.com/in/sacha-hajjar-026122230/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center space-x-3 text-lg text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
