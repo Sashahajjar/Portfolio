@@ -203,8 +203,15 @@ export default function Hero() {
             onClick={async (e) => {
               if (typeof window !== "undefined") {
                 try {
-                  const cvPath = `${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/');
-                  const response = await fetch(cvPath);
+                  // Add cache-busting query parameter to force fresh download
+                  const timestamp = new Date().getTime();
+                  const cvPath = `${basePath}/HAJJAR-Sacha-CV.pdf?v=${timestamp}`.replace('//', '/');
+                  const response = await fetch(cvPath, {
+                    cache: 'no-store',
+                    headers: {
+                      'Cache-Control': 'no-cache',
+                    }
+                  });
                   const blob = await response.blob();
                   const url = window.URL.createObjectURL(blob);
                   const link = document.createElement('a');
@@ -216,8 +223,9 @@ export default function Hero() {
                   window.URL.revokeObjectURL(url);
                 } catch (error) {
                   console.error('Error downloading CV:', error);
-                  // Fallback: open in new tab
-                  window.open(`${basePath}/HAJJAR-Sacha-CV.pdf`.replace('//', '/'), '_blank');
+                  // Fallback: open in new tab with cache-busting
+                  const timestamp = new Date().getTime();
+                  window.open(`${basePath}/HAJJAR-Sacha-CV.pdf?v=${timestamp}`.replace('//', '/'), '_blank');
                 }
               }
             }}
