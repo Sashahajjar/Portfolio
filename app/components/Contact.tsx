@@ -5,6 +5,8 @@ import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
 import { contactInfo } from "../utils/data";
 import { useLanguage } from "../contexts/LanguageContext";
 
+// Updated: LinkedIn URL and name corrections applied
+
 export default function Contact() {
   const { t } = useLanguage();
 
